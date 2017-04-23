@@ -1,0 +1,39 @@
+﻿@model ForumProject.Models.Post
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "ViewPost";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+    
+    </div>
+    <article>
+        <header>
+            <h1>@Model.Topic</h1>
+        </header>
+    </article>
+    <p>
+        @Model.Content
+    </p>
+    <small>
+        Written by @Model.Author.UserName on @DateTime.Now
+    </small>
+    <div class="pull-right">
+        @Html.ActionLink("Edit", "Edit", "Post", new { @id = Model.Id }, new { @class = "btn btn-success btn-xs" })
+        @Html.ActionLink("Delete","Delete","Post", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
+    </div>
+    <div>
+        @Html.ActionLink("Comment","Comment","Post")
+        @*Additional things about the comment button will be added in future updates :)*@
+    </div>
+</body>
+</html>
