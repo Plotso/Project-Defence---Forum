@@ -1,0 +1,44 @@
+﻿@model List<ForumProject.Models.Post>
+
+@{
+    ViewBag.Title= "All Posts";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        All Post
+    </title>
+</head>
+<body>
+    <header class="row">
+        <div class="header">
+            <div class="grid-container">
+                <h1 class="fontSizeH3">Welcome! You can choose a category from the listed below:</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div>
+            @foreach (var post in Model)
+            {
+                <article>
+                    <header>
+                        <h2>@Html.ActionLink(@post.Topic, "ViewPost", "Post", new { @id = post.PostId }, null)</h2>
+                    </header>
+                    <p>
+                        @post.Content
+                    </p>
+                    <footer>
+                        - @post.Author.UserName
+                    </footer>
+                </article>
+            }
+        </div>
+    </main>
+    @*<hr />*@
+</body>
+</html>
