@@ -1,0 +1,67 @@
+﻿@model ForumProject.Models.Post
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "ViewPost";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+    
+    </div>
+    <article>
+        <div align="center">
+            <h1 class="title">@Model.Topic</h1>
+        </div>
+    </article>
+    <h2 align="center">
+        @Model.Content
+    </h2>
+    <small>
+        <b>Written by @Model.Author.UserName on @Model.DateCreated</b>
+    </small>
+    <div class="pull-right">
+        @if (User.IsInRole("Admin") || Model.IsAuthor(User.Identity.GetUserId()))
+        {
+            @Html.ActionLink("Edit", "Edit", "Post", new { @id = Model.PostId }, new { @class = "btn btn-success btn-xs" })
+            @Html.ActionLink("Delete", "Delete", "Post", new { @id = Model.PostId }, new { @class = "btn btn-danger btn-xs" })
+        }      
+    </div>
+    <div>
+        @*@Html.ActionLink("Comment","Comment","Post",new { @id = Model.PostId })*@
+        <a href="@Url.Action("Comment", "Post", new { id = Model.PostId})" >Comment</a>
+           @*Additional things about the comment button will be added in future updates :)*@
+    </div>
+    <hr />
+    <div>
+        @if (Model.Comments.Any())
+        {
+            <h4>
+                <b>Comments:</b>
+            </h4>
+        }
+        @foreach (var comment in Model.Comments)
+        {
+            <form class="form-control">
+                <div class="navbar-form">
+
+                    <p >
+                        <b>@comment.Content</b>
+                    </p>
+                    <small>
+                        Written by @comment.Author.UserName on @comment.DateCreated
+                    </small>
+                </div>
+            </form>
+            <wbr />
+        }
+    </div>
+</body>
+</html>
