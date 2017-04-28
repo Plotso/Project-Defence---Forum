@@ -1,0 +1,37 @@
+﻿@model ForumProject.Models.Comment
+
+@{
+    ViewBag.Title = "DeleteComment";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <h2>Delete Comment</h2>
+        @using (Html.BeginForm("DeleteComment", "Post", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+            @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Content, new { @class = "control-label col-sm-4" })
+                    <div class="col-sm-4">
+                        @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @readonly = "readonly", @rows = "7" })
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            @Html.ActionLink("Cancel", "ViewPost", "Post", new { @id = Model.PostId }, new { @class = "btn btn-default" })
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </div>
+                    </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@model List<ForumProject.Models.Post>
+
+@{
+    ViewBag.Title= "All Posts";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        All Posts
+    </title>
+</head>
+<body>
+    <header class="row">
+        <div class="header">
+            <div class="grid-container">
+                <h1 class="fontSizeH3">Welcome! Here are all our articles:</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div>
+            @foreach (var post in Model)
+            {
+                <article>
+                    <header>
+                        <h2>@Html.ActionLink(@post.Topic, "ViewPost", "Post", new { @id = post.PostId }, null)</h2>
+                    </header>
+                    <p>
+                        @if (post.Content.Length > 100)
+                        {
+                            @post.Content.Substring(0, 100);
+                        }
+                        else
+                        {
+                            @post.Content
+                        }
+                    </p>
+                    <footer>
+                        <a href="@Url.Action("UserPage", "Post", new { @id = post.Author.UserName })" class="elements">
+                            <span>- @post.Author.UserName</span>
+                        </a>
+                    </footer>
+                </article>
+            }
+        </div>
+    </main>
+    @*<hr />*@
+</body>
+</html>

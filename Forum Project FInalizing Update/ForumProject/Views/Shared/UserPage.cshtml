@@ -1,0 +1,13 @@
+﻿@model ForumProject.Models.UserInfoModel
+@{
+    ViewBag.Title = "User Info";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h2>@(Model.FullName ?? string.Empty)</h2>
+    <h2>@(Model.Email ?? string.Empty)</h2>
+    <h2>@(Model.UserName ?? string.Empty)</h2>
+</div>
