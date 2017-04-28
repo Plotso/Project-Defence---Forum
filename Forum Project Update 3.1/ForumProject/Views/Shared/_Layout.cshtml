@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("KSR FORUM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("All Posts", "AllPosts", "Post")</li>
+                </ul>
+                <div class="input-group">
+                    <button type="button" class="btn-trump btn-default:hover dropdown-toggle" data-toggle="dropdown"><span runat="server" id="spanCategory">All Categories</span>&nbsp&nbsp<span class="caret"></span></button>
+                    <ul id="myMenu" class="dropdown-menu">
+                        <li><a href="#">Add Category</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Sashko i ilian sa admini</a></li>
+                        <li><a href="#">Date</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Client Name</a></li>
+                        <li><a href="#">Institution</a></li>
+                        <li><a href="#">Department</a></li>
+                        <li><a href="#">Location</a></li>
+                        <li><a href="#">Priority</a></li>
+                        <li><a href="#">Problem</a></li>
+                        <li><a href="#">Remark</a></li>
+                        <li><a href="#">Assigned</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">See all</a></li>
+                    </ul>
+
+                    @*<div class="input-group">
+                <asp:DropDownList ID="DD1" runat="server" CssClass="form-control" AutoPostBack="true" />
+            </div>*@
+                    <form action="" class="navbar-form navbar-right">
+                        <div class="input-group">
+                            <input type="Search" placeholder="Search..." class="form-control" />
+                            <div class="input-group-btn">
+                                <button class="btn btn-info">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - KSR</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
